@@ -5,27 +5,11 @@ const COUNTRIES = [
   { label: "United States", value: "us" },
   { label: "United Kingdom", value: "uk" },
   { label: "Canada", value: "ca" },
-  { label: "Australia", value: "au" },
-  { label: "Germany", value: "de" },
-  { label: "France", value: "fr" },
-  { label: "Italy", value: "it" },
-  { label: "Spain", value: "es" },
-  { label: "Mexico", value: "mx" },
-  { label: "Brazil", value: "br" },
-  { label: "Argentina", value: "ar" },
-  { label: "Japan", value: "jp" },
-  { label: "China", value: "cn" },
-  { label: "India", value: "in" },
-  { label: "South Korea", value: "kr" },
+  { label: "México", value: "mx" },
 ];
 
 function App() {
   const [selectedOption, setSelectedOption] = useState<SelectProps.Option | null>(null);
-  const [filteringText, setFilteringText] = useState("");
-
-  const filteredOptions = COUNTRIES.filter((country) =>
-    country.label.toLowerCase().includes(filteringText.toLowerCase())
-  );
 
   return (
     <div style={{ padding: "2rem", maxWidth: "400px", margin: "0 auto" }}>
@@ -33,9 +17,8 @@ function App() {
       <Select
         selectedOption={selectedOption}
         onChange={({ detail }) => setSelectedOption(detail.selectedOption)}
-        options={filteredOptions}
-        filteringType="manual"
-        onLoadItems={({ detail }) => setFilteringText(detail.filteringText)}
+        options={COUNTRIES}
+        filteringType="auto"
         placeholder="Select a country"
         expandToViewport
         empty="No countries found"
